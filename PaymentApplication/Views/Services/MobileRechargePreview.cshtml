@@ -1,0 +1,44 @@
+﻿@model PayApp.Models.MobileRechargeModel
+
+@{
+    ViewBag.Title = "MobileRechargePreview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Mobile Recharge Preview</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Mobile Recharge</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.MobileNumber)
+                @Html.HiddenFor(m => m.MobileNumber)
+                @Model.MobileNumber
+            </li>
+            <li>
+                @Html.LabelFor(m => m.MobileOperator)
+                @Html.HiddenFor(m => m.MobileOperator)
+                @Model.MobileOperator
+            </li>
+            <li>
+                @Html.LabelFor(m => m.MobileCircle)
+                @Html.HiddenFor(m => m.MobileCircle)
+                @Model.MobileCircle
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Amount)
+                @Html.HiddenFor(m => m.Amount)
+                @Model.Amount
+            </li>
+        </ol>
+        <input type="submit" value="Proceed to Payment" />
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

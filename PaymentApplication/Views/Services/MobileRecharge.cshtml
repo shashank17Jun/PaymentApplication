@@ -1,0 +1,49 @@
+﻿@model PayApp.Models.MobileRechargeModel
+@{
+    ViewBag.Title = "Mobile Recharge";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+<div id="dvRechargeInput">
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Mobile Recharge</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.MobileNumber)
+                @Html.TextBoxFor(m => m.MobileNumber, new { maxlength = 10})
+            </li>
+            <li>
+                @Html.LabelFor(m => m.MobileOperator)
+                @Html.DropDownList("MobileOperator", "")
+            </li>
+            <li>
+                @Html.LabelFor(m => m.MobileCircle)
+                @Html.DropDownList("MobileCircle", "")
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Amount)
+                @Html.TextBoxFor(m => m.Amount, new { maxlength = 4})
+            </li>
+        </ol>
+        <input id="btnProceedToRecharge" type="submit" value="Proceed to Recharge" />
+    </fieldset>
+}
+
+</div>
+
+<div id="dvRechargePreview">
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

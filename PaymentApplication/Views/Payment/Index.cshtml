@@ -1,0 +1,16 @@
+﻿@model ICollection<PayApp.Models.PaymentMethods>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Choose Payment Method</h2>
+
+<div id="dvPaymentsModes">
+    @foreach (var item in Model)
+    {
+        <div class="payMode">
+            <a href="/Payment/Action?id=@item.PaymentModeId&Amount=@ViewBag.Amount">@item.PaymentMethod</a>
+        </div>
+    }    
+</div>

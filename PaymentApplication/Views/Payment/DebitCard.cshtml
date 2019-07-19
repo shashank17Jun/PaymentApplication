@@ -1,0 +1,53 @@
+﻿@model PayApp.Models.DebitCardModel
+@{
+    ViewBag.Title = "DebitCard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Payment with Debit Card</h2>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Pay using Debit Card</legend>
+        <table class="pay-card-detail" style="">
+            <tr>
+                <td colspan="4">
+                    <img src="/Images/visa-icons-group.png" style="width:100%" /></td>
+            </tr>
+            <tr>
+                <td colspan="4">@Html.LabelFor(m => m.CardNumber)</td>
+            </tr>
+            <tr>
+                <td colspan="3" style="width:80%">@Html.TextBoxFor(m => m.CardNumber, new { maxlength = 16, style="width:100%!important" })</td>
+                <td style="width:50px; text-align:right">
+                    <img src="/Images/debit-credit-card-img.png" style="height:34px" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><label>Expiration Date</label> </td>
+                <td colspan="2">@Html.LabelFor(m => m.CVV)</td>
+            </tr>
+            <tr>
+                <td style="width:30%">@Html.DropDownListFor(m => m.ExpriryMonth, (IEnumerable<SelectListItem>)ViewBag.ExpriryMonth,new {style="width:100%!important" })</td>
+                <td style="width:30%">@Html.DropDownListFor(m => m.ExpiryYear, (IEnumerable<SelectListItem>)ViewBag.ExpiryYear, new { style="width:100%!important" })</td>
+                <td colspan="2">@Html.TextBoxFor(m => m.CVV, new { maxlength = 3, style="width:100%!important;text-align:right" })</td>
+            </tr>
+            <tr>
+                <td colspan="4">@Html.LabelFor(m => m.CardHolderName)</td>
+            </tr>
+            <tr>
+                <td colspan="4">@Html.TextBoxFor(m => m.CardHolderName, new { maxlength = 50, style="width:100%!important" })</td>
+            </tr>
+        </table>
+
+      <div>
+          <input id="chkRemember" type="checkbox" /> Save this card/bank for QuickPay</div>
+        <input type="submit" value="Make Payment for Rs. @Model.Amount" />
+
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

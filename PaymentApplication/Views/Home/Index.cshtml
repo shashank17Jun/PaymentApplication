@@ -1,0 +1,28 @@
+﻿@model ICollection<PayApp.Models.Services>
+@{
+    ViewBag.Title = "HCL Pay App";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+                This is sample Payment Application. We provides the medium to pay your bills of electricity, water, gas, postpaid connections etc.
+            </p>
+        </div>
+    </section>
+}
+<h3>Our Services are as below:</h3>
+<div id="dvServices">
+    @foreach (var item in Model)
+    {
+        <div class="payServiceItem">
+            <a href="/Services/Action?id=@item.ServiceCode"><img src="@item.ServiceLogo" /><br />
+            @item.DisplayName
+                </a>
+        </div>
+    }    
+</div>
